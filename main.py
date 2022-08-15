@@ -17,13 +17,17 @@ async def get_data(name: str, current_loop: int):
 
 
 async def main():
-    a = 0
-    for _ in range(50):
-        a += 1
-        task1 = asyncio.create_task(get_data("Task1", a))
-        await asyncio.sleep(2)
-        task2 = asyncio.create_task(get_data("Task2", a))
+    task1 = asyncio.create_task(get_data("Task1", 0))
+    await asyncio.sleep(1.8)
+    task2 = asyncio.create_task(get_data("Task2", 0))
+
+    for loop in range(1, 100):
         await task1
+        await asyncio.sleep(0.2)
+        task1 = asyncio.create_task(get_data("Task1", loop))
+        await task2
+        await asyncio.sleep(0.2)
+        task2 = asyncio.create_task(get_data("Task2", loop))
 
 if __name__ == "__main__":
     asyncio.run(main())
