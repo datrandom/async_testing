@@ -50,13 +50,15 @@ def run():
         print(request)
         print(client_address)
 
-        # Generate a response
-        response = generate_response(request.decode())
+        # If request isn't empty
+        if request:
+            # Generate a response
+            response = generate_response(request.decode())
 
-        # Send to a client response
-        client_socket.sendall(response.encode())
-        # Closing a connection
-        client_socket.close()
+            # Send to a client response
+            client_socket.sendall(response.encode())
+            # Closing a connection
+            client_socket.close()
 
 
 if __name__ == "__main__":
