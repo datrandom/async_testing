@@ -44,7 +44,7 @@ def run():
         # If the server receives a request, we'll get a client_socket and client_address
         client_socket, client_address = server.accept()
         # Receive 1024 bytes
-        request = client_socket.recv(1024)  # 1024 - bytes
+        request = client_socket.recv(1024)
 
         # Printing info about a request
         print(request)
